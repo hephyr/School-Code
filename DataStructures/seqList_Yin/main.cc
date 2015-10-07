@@ -1,5 +1,6 @@
 #include <iostream>
-#include "seqList_Yin.cc"
+#include <cstdlib>
+#include "linearList.h"
 using namespace std;
 int main() {
 	SeqList<int> sl;
@@ -24,5 +25,7 @@ int main() {
 		cout << "Remove failed" << endl;
 	}
 	sl.output();
+
+	system("pause");
 	return 0;
 }
