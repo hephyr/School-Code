@@ -17,8 +17,8 @@ int main() {
         v.push_back(inputNum);
     for (auto val : v) {
         auto itrL = strL.begin();
-        for (int i = 0; i != val-1; ++i, ++itrL);
-        cout << *itrL << endl;
+        for (int i = 0; i != val-1; ++i, ++itrL)
+                cout << *itrL << endl;
     }
 	return 0;
 }
