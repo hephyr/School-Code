@@ -62,5 +62,6 @@ Array &Array::Warshall() {
         j = 0;
         ++i;
     }
+    return *this;
 }
 #endif //ARRAY_H
