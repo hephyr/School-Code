@@ -2,14 +2,17 @@
 #define ARRAY_H
 #include <iostream>
 #include <vector>
+#include <fstream>
 class Array {
 public:
     Array() = default;
     Array(int j, int i);
     void print() const;
     Array &Write();
+    Array &Write(std::ifstream &infile);
     Array &Write(int j,int i,int e);
     Array &Warshall();
+    bool operator!=(const Array &a);
 private:
     std::vector<std::vector<int>> v;
 };
@@ -19,7 +22,7 @@ Array::Array(int j, int i) {
         std::vector<int> temp(i, 0);
         v.push_back(temp);
     }
-    this->Write();
+    //this->Write();
 }
 void Array::print() const {
     for (auto &itemj : v) {
@@ -43,6 +46,12 @@ Array &Array::Write() {
     std::cout << std::endl;
     return *this;
 }
+Array &Array::Write(std::ifstream &infile) {
+    for (auto &item :v)
+        for (auto &val : item)
+            infile >> val;
+    return *this;
+}
 Array &Array::Warshall() {
     auto row = v.size();
     auto colomn = v[0].size();
@@ -63,5 +72,23 @@ Array &Array::Warshall() {
         ++i;
     }
     return *this;
+}
+
+bool Array::operator!=(const Array &a) {
+    auto row = v.size();
+    auto colomn = v[0].size();
+    decltype(row) j = 0;
+    decltype(colomn) i = 0;
+    while (j != row) {
+        while (i != colomn) {
+            if (v[j][i] != a.v[j][i]) {
+                return true;
+            }
+            ++i;
+        }
+        i = 0;
+        ++j;
+    }
+    return false;
 }
 #endif //ARRAY_H
