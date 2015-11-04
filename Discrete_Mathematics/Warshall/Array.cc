@@ -76,16 +76,19 @@ bool Array::operator!=(const Array &a) {
     }
     return false;
 }
-// int numline(std::ifstream infile) {
-//     int i = 0;
-//     std::string s;
-//     while (!infile.eof()) {
-//         infile >> s;
-//         ++i;
-//     }
-//     if (sqrt(i) % 1 != 0) {
-//         std::cerr << "Wrong data, check out \'infile\'" << std::endl;
-//         return -1;
-//     }
-//     return sqrt(i);
-// }
+int numline(char * argv) {
+    std::ifstream infile(argv);
+    int i = 0;
+    std::string s;
+    while (!infile.eof()) {
+        infile >> s;
+        ++i;
+    }
+    int j = static_cast<int>(sqrt(i));
+    bool b = (j*j != static_cast<int>(i));
+    if (b) {
+        std::cerr << "Wrong data, check out \'infile\'" << std::endl;
+        return -1;
+    }
+    return sqrt(i);
+}

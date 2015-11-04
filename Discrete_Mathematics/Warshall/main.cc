@@ -7,9 +7,10 @@ using std::cout;
 using std::endl;
 using std::vector;
 int main(int argc, char * argv[]) {
-	std::ifstream infile(argv[1]);
+    char file[] = "infile";
+	std::ifstream infile(file);
 	cout << "Confirm the data stored in \'infile\'" << endl;
-	int i = numline(argv[1]);
+	int i = numline(file);
     Array a(i, i);
     a.Write(infile);
     cout << "\n\n";
