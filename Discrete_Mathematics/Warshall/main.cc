@@ -9,9 +9,7 @@ using std::vector;
 int main(int argc, char * argv[]) {
 	std::ifstream infile(argv[1]);
 	cout << "Confirm the data stored in \'infile\'" << endl;
-	cout << "How many rows?" << endl;
-	int i;
-	cin >> i;
+	int i = numline(argv[1]);
     Array a(i, i);
     a.Write(infile);
     cout << "\n\n";

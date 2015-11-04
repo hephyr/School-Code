@@ -1,39 +1,7 @@
-#ifndef ARRAY_H
-#define ARRAY_H
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <cmath>
-int numline(char * argv) {
-    std::ifstream infile(argv);
-    int i = 0;
-    std::string s;
-    while (!infile.eof()) {
-        infile >> s;
-        ++i;
-    }
-    int j = static_cast<int>(sqrt(i));
-    bool b = (j != static_cast<int>(i));
-    if (b) {
-        std::cerr << "Wrong data, check out \'infile\'" << std::endl;
-        return -1;
-    }
-    return sqrt(i);
-}
-class Array {
-public:
-    Array() = default;
-    Array(int j, int i);
-    void print() const;
-    Array &Write();
-    Array &Write(std::ifstream &infile);
-    Array &Write(int j,int i,int e);
-    Array &Warshall();
-    bool operator!=(const Array &a);
-private:
-    std::vector<std::vector<int>> v;
-};
-
+#include "Array.h"
 Array::Array(int j, int i) {
     for (int p = 0; p != j; ++p) {
         std::vector<int> temp(i, 0);
@@ -108,4 +76,16 @@ bool Array::operator!=(const Array &a) {
     }
     return false;
 }
-#endif //ARRAY_H
+// int numline(std::ifstream infile) {
+//     int i = 0;
+//     std::string s;
+//     while (!infile.eof()) {
+//         infile >> s;
+//         ++i;
+//     }
+//     if (sqrt(i) % 1 != 0) {
+//         std::cerr << "Wrong data, check out \'infile\'" << std::endl;
+//         return -1;
+//     }
+//     return sqrt(i);
+// }
