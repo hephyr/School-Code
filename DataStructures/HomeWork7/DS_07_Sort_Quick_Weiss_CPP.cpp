@@ -132,11 +132,11 @@ private:
 template <typename Comparable>
 void insertionSort( Vector<Comparable> &a, int begin, int end ) {
     for (int p = 1; p< a.size(); ++p) {
-        Comparable tmp = std::move(a[p].ID);
+        Comparable tmp = move(a[p].ID);
         int j;
         for (j = p; j > 0 && tmp < a[j - 1].ID; --j)
-            a[j] = std::move(a[j-1]);
-        a[j].ID = std::move(tmp);
+            a[j] = move(a[j-1]);
+        a[j].ID = move(tmp);
     }
 }
 
