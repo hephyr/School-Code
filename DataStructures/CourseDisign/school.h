@@ -1,15 +1,21 @@
 #ifndef SCHOOL_H
 #define SCHOOL_H
+#include <iostream>
 #include <string>
 class School {
 public:
     School() {
-    	id = 1;
+        schid = num;
+        ++num;
     }
     ~School() = default;
-//protected:
-    unsigned id;
+    int getID() {
+        return schid;
+    }
+private:
+    int schid;
+    static int num;
     std::string name;
 };
-
+int School::no = 1;
 #endif //SCHOOL_H

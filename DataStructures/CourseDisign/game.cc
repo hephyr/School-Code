@@ -1,4 +1,3 @@
-#include <iostream>
 #include "game.h"
 
 Game::Game() {
@@ -21,7 +20,7 @@ void Game::getscore(std::list<School> &S) {
     for (int i = 0; i != winners; ++i) {
         std::size_t j = 0;
         for (const auto &school : S) {
-        	std::cout << "ID: " << school.id << std::endl;
+        	// std::cout << "ID: " << std::endl;
         }
         // std::cout << "Please input the No." << i << " score :";
         // std::cin >> 

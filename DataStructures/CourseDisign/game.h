@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <vector>
 #include "school.h"
 
 class Game : public School{
@@ -16,6 +17,6 @@ private:
     unsigned winners;
     unsigned score5[5] = {7, 5, 3, 2, 1};
     unsigned score3[3] = {5, 3, 2};
-    vector<School> rank;
+    std::vector<School> rank;
 };
 #endif //GAME_H
