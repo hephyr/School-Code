@@ -10,7 +10,9 @@ using std::cin; using std::endl; using std::cout;
 using std::string; using std::vector; using std::list;
 
 int main(int argc, char *argv[]) {
-    vector<Person> P;
-    vector<Game> G(10);
+	list<School> S(10);
+    list<Game> G(10);
+    for (auto &game : G)
+    	game.getscore(S);
     return 0;
 }

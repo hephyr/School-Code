@@ -3,9 +3,11 @@
 #include <string>
 class School {
 public:
-    School();
+    School() {
+    	id = 1;
+    }
     ~School() = default;
-protected:
+//protected:
     unsigned id;
     std::string name;
 };
