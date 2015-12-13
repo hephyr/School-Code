@@ -9,13 +9,13 @@ public:
         ++num;
     }
     ~School() = default;
-    int getID() {
+    int getID() const {
         return schid;
     }
+    static int num = 1;
 private:
     int schid;
-    static int num;
     std::string name;
 };
-int School::no = 1;
+// int School::num = 1;
 #endif //SCHOOL_H

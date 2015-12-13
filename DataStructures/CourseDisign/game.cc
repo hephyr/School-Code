@@ -20,9 +20,7 @@ void Game::getscore(std::list<School> &S) {
     for (int i = 0; i != winners; ++i) {
         std::size_t j = 0;
         for (const auto &school : S) {
-        	// std::cout << "ID: " << std::endl;
+        	std::cout << school.getID() << std::endl;
         }
-        // std::cout << "Please input the No." << i << " score :";
-        // std::cin >> 
     }
 }
