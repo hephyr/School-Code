@@ -5,15 +5,17 @@
 class School {
 public:
     School() {
-        schid = no++;
+        id = no++;
     }
     ~School() = default;
     int getID() {
-        return schid;
+        return id;
     }
-private:
+
+    
     static int no;
-    int schid;
+private:
+    int id;
     std::string name;
 };
 #endif //SCHOOL_H
