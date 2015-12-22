@@ -17,11 +17,20 @@ Game::Game() {
 void Game::printgamename() {
     std::cout << name << std::endl;
 }
-void Game::getscore(std::list<School> &S) {
+void Game::setscore(std::vector<School> &S) {
+    size_t s;
     for (int i = 0; i != winners; ++i) {
         std::size_t j = 0;
         for (const auto &school : S) {
-        	std::cout << school.getID() << std::endl;
+            std::cout << school.getID() << std::endl;
         }
+        std::cout << "Input the No." << i << " school id." << std::endl;
+        std::cin >> s;
+        rank.push_back(S[s-1]);
+        if (winners == 3)
+            S[s-1].score += score3[s-1];
+        else
+            S[s-1].score += score5[s-1];
+
     }
 }

@@ -11,14 +11,13 @@ public:
     Game();
     ~Game() = default;
     void printgamename();
-    void getscore(std::list<School> &S);
+    void setscore(std::vector<School> &S);
 
-    
     static int no;
 private:
     std::string name;
     int id;
-    unsigned winners;
+    int winners;
     unsigned score5[5] = {7, 5, 3, 2, 1};
     unsigned score3[3] = {5, 3, 2};
     std::vector<School> rank;
