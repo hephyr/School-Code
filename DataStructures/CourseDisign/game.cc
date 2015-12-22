@@ -1,6 +1,7 @@
 #include "game.h"
 
 Game::Game() {
+    id = no++;
     std::cout << "Please input the game name :";
     std::cin >> name;
     while (1) {

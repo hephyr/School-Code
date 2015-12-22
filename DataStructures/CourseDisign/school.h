@@ -5,17 +5,15 @@
 class School {
 public:
     School() {
-        schid = num;
-        ++num;
+        schid = no++;
     }
     ~School() = default;
-    int getID() const {
+    int getID() {
         return schid;
     }
-    static int num = 1;
 private:
+    static int no;
     int schid;
     std::string name;
 };
-// int School::num = 1;
 #endif //SCHOOL_H

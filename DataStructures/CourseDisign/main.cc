@@ -6,6 +6,8 @@
 #include "school.h"
 #include "game.h"
 
+Game::no = 1;
+School::no = 1;
 using std::cin; using std::endl; using std::cout;
 using std::string; using std::vector; using std::list;
 

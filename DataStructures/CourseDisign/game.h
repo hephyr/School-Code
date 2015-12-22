@@ -6,7 +6,7 @@
 #include <vector>
 #include "school.h"
 
-class Game : public School{
+class Game {
 public:
     Game();
     ~Game() = default;
@@ -14,6 +14,8 @@ public:
     void getscore(std::list<School> &S);
 private:
     std::string name;
+    int id;
+    static int no;
     unsigned winners;
     unsigned score5[5] = {7, 5, 3, 2, 1};
     unsigned score3[3] = {5, 3, 2};
