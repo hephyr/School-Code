@@ -21,10 +21,11 @@ void Game::setscore(std::vector<School> &S) {
     size_t s;
     for (int i = 0; i != winners; ++i) {
         std::size_t j = 0;
+        std::cout << "Schools:" << std::endl;
         for (auto &school : S) {
-            std::cout << school.getID() << std::endl;
+            std::cout << "ID."<< school.getID() << std::endl;
         }
-        std::cout << "Input the No." << i << " school id." << std::endl;
+        std::cout << "Input the No." << i+1 << " school id." << std::endl;
         std::cin >> s;
         rank.push_back(S[s-1]);
         if (winners == 3)
