@@ -14,14 +14,14 @@ Game::Game() {
 	    }
 	}
 }
-void Game::printgamename() {
-    std::cout << name << std::endl;
+void Game::print() {
+    std::cout << "ID." << id << " " << name << std::endl;
 }
 void Game::setscore(std::vector<School> &S) {
     size_t s;
     for (int i = 0; i != winners; ++i) {
         std::size_t j = 0;
-        for (const auto &school : S) {
+        for (auto &school : S) {
             std::cout << school.getID() << std::endl;
         }
         std::cout << "Input the No." << i << " school id." << std::endl;

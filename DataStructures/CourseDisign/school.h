@@ -11,8 +11,11 @@ public:
         score = 0;
     }
     ~School() = default;
-    int getID() const {
+    int getID() {
         return id;
+    }
+    void print() {
+        std::cout << "ID." << id << "  score:" << score << std::endl;
     }
 
     static int no;

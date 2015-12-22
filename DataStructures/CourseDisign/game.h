@@ -2,7 +2,6 @@
 #define GAME_H
 #include <iostream>
 #include <string>
-#include <list>
 #include <vector>
 #include "school.h"
 
@@ -10,7 +9,10 @@ class Game {
 public:
     Game();
     ~Game() = default;
-    void printgamename();
+    int getID() {
+        return id;
+    }
+    void print();
     void setscore(std::vector<School> &S);
 
     static int no;
