@@ -14,6 +14,7 @@ int School::no = 1;
 
 void Interface();
 void Schoolrank(vector<School> &schools);
+void Sportrank(vector<Game> &games);
 
 int main(int argc, char *argv[]) {
     int num_sch, num_sport;
@@ -39,6 +40,7 @@ int main(int argc, char *argv[]) {
                 for (auto &sch : schools) {
                     sch.print();
                 }
+                break;
             case 3:
                 for (auto &sport : games) {
                     sport.print();
@@ -50,6 +52,9 @@ int main(int argc, char *argv[]) {
                 break;
             case 4:
                 Schoolrank(schools);
+                break;
+            case 5:
+                Sportrank(games);
             default : ;
         }
     }
@@ -73,5 +78,17 @@ void Schoolrank(vector<School> &schools) {
     cout << "*******RANK*******" << endl;
     for (auto o : s)
         o.print();
+    cout << endl << endl;
+}
+
+void Sportrank(vector<Game> &games) {
+    size_t i;
+    cout << "*******RANK*******" << endl;
+    for (auto &s : games) {
+        s.print();
+    }
+    cout << "witch one ?" << endl;
+    cin >> i;
+    games[i-1].printrank();
     cout << endl << endl;
 }

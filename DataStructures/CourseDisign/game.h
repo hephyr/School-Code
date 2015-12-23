@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include "school.h"
 
 class Game {
@@ -14,7 +15,7 @@ public:
     }
     void print();
     void setscore(std::vector<School> &S);
-
+    void printrank();
     static int no;
 private:
     std::string name;
@@ -22,6 +23,6 @@ private:
     int winners;
     unsigned score5[5] = {7, 5, 3, 2, 1};
     unsigned score3[3] = {5, 3, 2};
-    std::vector<School> rank;
+    std::map<int, int> rank;
 };
 #endif //GAME_H

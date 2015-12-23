@@ -27,11 +27,19 @@ void Game::setscore(std::vector<School> &S) {
             std::cout << "ID."<< school.getID() << std::endl;
         }
         std::cout << "Input the No." << i+1 << " school id." << std::endl;
-        std::cin >> s;
-        rank.push_back(S[s-1]);
-        if (winners == 3)
-            S[s-1].addscore(score3[i]);
-        else
-            S[s-1].addscore(score5[i]);
+        std::cin >> id;
+        if (winners == 3) {
+            S[id-1].addscore(score3[i]);
+            rank[S[id-1].getID()] = score3[i];
+        } else {
+            S[id-1].addscore(score5[i]);
+            rank[S[id-1].getID()] = score5[i];
+        }
+    }
+}
+void Game::printrank() {
+    size_t i = 0;
+    for (const auto &sch : rank) {
+        std::cout << "ID." << sch.first << " Score:" << sch.second << std::endl;
     }
 }
