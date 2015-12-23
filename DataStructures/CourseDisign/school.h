@@ -11,7 +11,7 @@ public:
         score = 0;
     }
     ~School() = default;
-    int getID() const{
+    int getID() const {
         return id;
     }
     void print() {
