@@ -15,7 +15,7 @@ Game::Game() {
 	    }
 	}
 }
-void Game::print() {
+void Game::print() const {
     std::cout << "ID." << id << " " << name << std::endl;
 }
 void Game::setscore(std::vector<School> &S) {
@@ -23,23 +23,29 @@ void Game::setscore(std::vector<School> &S) {
     for (int i = 0; i != winners; ++i) {
         std::size_t j = 0;
         std::cout << "Schools:" << std::endl;
-        for (auto &school : S) {
+        for (const auto &school : S) {
             std::cout << "ID."<< school.getID() << std::endl;
         }
         std::cout << "Input the No." << i+1 << " school id." << std::endl;
-        std::cin >> id;
+        std::cin >> s;
         if (winners == 3) {
-            S[id-1].addscore(score3[i]);
-            rank[S[id-1].getID()] = score3[i];
+            S[s-1].addscore(score3[i]);
         } else {
-            S[id-1].addscore(score5[i]);
-            rank[S[id-1].getID()] = score5[i];
+            S[s-1].addscore(score5[i]);
         }
+        rank.push_back(S[s-1]);
     }
 }
 void Game::printrank() {
     size_t i = 0;
     for (const auto &sch : rank) {
-        std::cout << "ID." << sch.first << " Score:" << sch.second << std::endl;
+        std::cout << "ID." << sch.getID();
+        if (winners == 3) {
+            std::cout << " Score: " << score3[i] << std::endl;
+            ++i;
+        } else {
+            std::cout << " Score: " << score5[i] << std::endl;
+            ++i;
+        }
     }
 }

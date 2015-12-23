@@ -14,7 +14,7 @@ public:
     int getID() const {
         return id;
     }
-    void print() {
+    void print() const {
         std::cout << "ID." << id << "  score:" << score << std::endl;
     }
     int getscore() const {

@@ -32,17 +32,17 @@ int main(int argc, char *argv[]) {
         cin >> choose;
         switch(choose) {
             case 1: 
-                for (auto &sport : games) {
+                for (const auto &sport : games) {
                     sport.print();
                 }
                 break;
             case 2:
-                for (auto &sch : schools) {
+                for (const auto &sch : schools) {
                     sch.print();
                 }
                 break;
             case 3:
-                for (auto &sport : games) {
+                for (const auto &sport : games) {
                     sport.print();
                 }
                 size_t dex;
@@ -76,7 +76,7 @@ void Schoolrank(vector<School> &schools) {
                 [] (const School &a, const School &b)
                     {return a.getscore() > b.getscore();});
     cout << "*******RANK*******" << endl;
-    for (auto o : s)
+    for (const auto o : s)
         o.print();
     cout << endl << endl;
 }
@@ -84,7 +84,7 @@ void Schoolrank(vector<School> &schools) {
 void Sportrank(vector<Game> &games) {
     size_t i;
     cout << "*******RANK*******" << endl;
-    for (auto &s : games) {
+    for (const auto &s : games) {
         s.print();
     }
     cout << "witch one ?" << endl;
