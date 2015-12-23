@@ -1,10 +1,15 @@
 #include <iostream>
 #include <vector>
-using namespace std;
+#include "school.h"
+using std::cout; using std::endl;
 int main() {
-    vector<int> v1;
-    v1.assign(10);
-    for (auto &a : v1)
-        cout << a << endl;
+    std::vector<int> a{1, 2, 3};
+    std::vector<int> b;
+    b.assign(a.begin(), a.end());
+    b[1] = 6;
+    for (auto c : b)
+        cout << c << endl;
+    for (auto c : a)
+        cout << c << endl;
     return 0;
 }

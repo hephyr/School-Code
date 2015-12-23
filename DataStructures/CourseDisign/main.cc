@@ -13,6 +13,7 @@ int Game::no = 1;
 int School::no = 1;
 
 void Interface();
+void Schoolrank(vector<School> &schools);
 
 int main(int argc, char *argv[]) {
     int num_sch, num_sport;
@@ -47,6 +48,8 @@ int main(int argc, char *argv[]) {
                 cin >> dex;
                 games[dex-1].setscore(schools);
                 break;
+            case 4:
+                Schoolrank(schools);
             default : ;
         }
     }
@@ -54,9 +57,21 @@ int main(int argc, char *argv[]) {
 }
 
 void Interface() {
-    cout << "1. Sports" << endl;
-    cout << "2. Schools" << endl;
-    cout << "3. Fill Score" << endl;
-    cout << "4. School Rank" << endl;
-    cout << "5. The Sport Score" << endl;
+    cout << "*******WELCOME*******" << endl;
+    cout << "\t1. Sports" << endl;
+    cout << "\t2. Schools" << endl;
+    cout << "\t3. Fill Score" << endl;
+    cout << "\t4. School Rank" << endl;
+    cout << "\t5. The Sport Score" << endl;
+}
+void Schoolrank(vector<School> &schools) {
+    vector<School> s;
+    s.assign(schools.begin(), schools.end());
+    stable_sort(s.begin(), s.end(),
+                [] (const School &a, const School &b)
+                    {return a.getscore() > b.getscore();});
+    cout << "*******RANK*******" << endl;
+    for (auto o : s)
+        o.print();
+    cout << endl << endl;
 }

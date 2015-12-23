@@ -2,8 +2,9 @@
 
 Game::Game() {
     id = no++;
-    std::cout << "Please input the game name :";
-    std::cin >> name;
+    // std::cout << "Please input the game name :";
+    // std::cin >> name;
+    std::cout << "SPORT ID." << id << std::endl;
     while (1) {
 	    std::cout << "5 winners or 3 winners ? :";
 	    std::cin >> winners;
@@ -29,9 +30,8 @@ void Game::setscore(std::vector<School> &S) {
         std::cin >> s;
         rank.push_back(S[s-1]);
         if (winners == 3)
-            S[s-1].score += score3[s-1];
+            S[s-1].addscore(score3[i]);
         else
-            S[s-1].score += score5[s-1];
-
+            S[s-1].addscore(score5[i]);
     }
 }

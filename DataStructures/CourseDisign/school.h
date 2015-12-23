@@ -17,6 +17,12 @@ public:
     void print() {
         std::cout << "ID." << id << "  score:" << score << std::endl;
     }
+    int getscore() const {
+        return score;
+    }
+    void addscore(int s) {
+        score += s;
+    }
 
     static int no;
 private:
