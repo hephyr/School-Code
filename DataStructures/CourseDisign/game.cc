@@ -21,7 +21,6 @@ void Game::print() const {
 void Game::setscore(std::vector<School> &S) {
     size_t s;
     for (int i = 0; i != winners; ++i) {
-        std::size_t j = 0;
         std::cout << "Schools:" << std::endl;
         for (const auto &school : S) {
             std::cout << "ID."<< school.getID() << std::endl;
@@ -48,4 +47,12 @@ void Game::printrank() {
             ++i;
         }
     }
+}
+
+void Game::writefile(std::ofstream &outfile) const {
+    outfile << "ID:"<< id << std::endl;
+    outfile << "Winners:" << winners << std::endl;
+    std::vector<School> rank;
+    for (const auto &sch : rank)
+        sch.writefile(outfile);
 }

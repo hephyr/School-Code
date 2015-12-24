@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <map>
+#include <fstream>
 #include "school.h"
 
 class Game {
@@ -14,8 +14,15 @@ public:
         return id;
     }
     void print() const;
+    void setID(int i) {
+        id = i;
+    }
+    void setwinners(int w) {
+        winners = w;
+    }
     void setscore(std::vector<School> &S);
     void printrank();
+    void writefile(std::ofstream &outfile) const;
     static int no;
 private:
     std::string name;
