@@ -35,7 +35,9 @@ public:
         outfile << "Score:" << score << std::endl;
         outfile << "SchoolName:" << name << std::endl;
     }
-
+    void setName(std::string n) {
+        name = n;
+    }
     static int no;
 private:
     int id;

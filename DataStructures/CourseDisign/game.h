@@ -20,6 +20,9 @@ public:
     void setwinners(int w) {
         winners = w;
     }
+    void setName(std::string n) {
+        name = n;
+    }
     void setscore(std::vector<School> &S);
     void printrank();
     void writefile(std::ofstream &outfile) const;
