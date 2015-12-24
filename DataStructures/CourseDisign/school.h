@@ -11,6 +11,10 @@ public:
         id = no++;
         score = 0;
     }
+    School(int i) {
+        if (i != 0)
+            id = i;
+    }
     ~School() = default;
     int getID() const {
         return id;

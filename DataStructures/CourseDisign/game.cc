@@ -15,6 +15,10 @@ Game::Game() {
 	    }
 	}
 }
+Game::Game(int i) {
+    if (i != 0)
+        id = i;
+}
 void Game::print() const {
     std::cout << "ID." << id << " " << name << std::endl;
 }
@@ -40,10 +44,10 @@ void Game::printrank() {
     for (const auto &sch : rank) {
         std::cout << "ID." << sch.getID();
         if (winners == 3) {
-            std::cout << " Score: " << score3[i] << std::endl;
+            std::cout << "\tScore: " << score3[i] << std::endl;
             ++i;
         } else {
-            std::cout << " Score: " << score5[i] << std::endl;
+            std::cout << "\tScore: " << score5[i] << std::endl;
             ++i;
         }
     }

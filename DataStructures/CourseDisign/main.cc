@@ -19,8 +19,8 @@ void Interface();
 void Schoolrank(vector<School> &schools);
 void Sportrank(vector<Game> &games);
 bool WriteData(vector<Game> &game, vector<School> &schools);
-bool ReadGameData(ifstream &infile, vector<Game> &games);
-bool ReadSchoolData(ifstream &infile, vector<School> &schools);
+void ReadGameData(ifstream &infile, vector<Game> &games);
+void ReadSchoolData(ifstream &infile, vector<School> &schools);
 
 int main(int argc, char *argv[]) {
     int num_sch, num_sport;
@@ -133,49 +133,59 @@ bool WriteData(vector<Game> &game, vector<School> &schools) {
 }
 
 
-bool ReadGameData(ifstream &infile, vector<Game> &games) {
+void ReadGameData(ifstream &infile, vector<Game> &games) {
     string s;
-    int data, flag;
     getline(infile, s);
     if (s.find("No") != string::npos) {
         auto pos = s.find(":") + 1;
         Game::no = stoi(s.substr(pos));
     }
-    games.resize(Game::no - 1);
-    auto it = games.begin();
+    Game temp(0);
+    int flag = 1;
     while (getline(infile, s)) {
         auto pos = s.find(":") + 1;
         if (pos == s.size())
             continue;
         if (s.find("ID") != string::npos) {
-            it->setID(stoi(s.substr(pos)));
-        } else if (s.find("Winners") != string::npos) {
-            it->setwinners(stoi(s.substr(pos)));
+            temp.setID(stoi(s.substr(pos)));
         } else if (s.find("Name") != string::npos) {
-            it->setName(s.substr(pos));
+            temp.setName(s.substr(pos));
+        } else if (s.find("Winners") != string::npos) {
+            temp.setwinners(stoi(s.substr(pos)));
+        }
+        if (flag != 3)
+            ++flag;
+        else {
+            flag = 1;
+            games.push_back(temp);
         }
     }
 }
-bool ReadSchoolData(ifstream &infile, vector<School> &schools) {
+void ReadSchoolData(ifstream &infile, vector<School> &schools) {
     string s;
-    int data, flag;
     getline(infile, s);
     if (s.find("No") != string::npos) {
         auto pos = s.find(":") + 1;
         School::no = stoi(s.substr(pos));
     }
-    schools.resize(School::no - 1);
-    auto it = schools.begin();
+    School temp(0);
+    int flag = 1;
     while (getline(infile, s)) {
         auto pos = s.find(":") + 1;
         if (pos == s.size())
             continue;
         if (s.find("ID") != string::npos) {
-            it->setID(stoi(s.substr(pos)));
+            temp.setID(stoi(s.substr(pos)));
         } else if (s.find("Score") != string::npos) {
-            it->setscore(stoi(s.substr(pos)));
+            temp.setscore(stoi(s.substr(pos)));
         } else if (s.find("Name") != string::npos) {
-            it->setName(s.substr(pos));
+            temp.setName(s.substr(pos));
+        }
+        if (flag != 3)
+            ++flag;
+        else {
+            flag = 1;
+            schools.push_back(temp);
         }
     }
 }

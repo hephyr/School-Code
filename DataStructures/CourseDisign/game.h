@@ -9,6 +9,7 @@
 class Game {
 public:
     Game();
+    Game(int i);
     ~Game() = default;
     int getID() const {
         return id;
