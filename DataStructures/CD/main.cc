@@ -18,6 +18,8 @@ int School::no = 1;
 void Interface();
 void Schoolrank(vector<School> &schools);
 void Sportrank(vector<Game> &games);
+void Menrank(vector<School> &schools);
+void Womenrank(vector<School> &schools);
 bool WriteData(vector<Game> &game, vector<School> &schools);
 void Interface_in(vector<School> &schools, vector<Game> &games);
 void Interface_out(vector<School> &schools, vector<Game> &games);
@@ -111,6 +113,8 @@ void Interface_out(vector<School> &schools, vector<Game> &games) {
     cout << "\t2.Output Game Infomation" << endl;
     cout << "\t3.Output School Rank" << endl;
     cout << "\t4.Output School Rank under Games" << endl;
+    cout << "\t5.Output Men Rank" << endl;
+    cout << "\t6.Output Women Rank" << endl;
     cout << "\t0.Return The Previous" << endl;
     cout << "*********************" << endl;
     int choose;
@@ -126,6 +130,8 @@ void Interface_out(vector<School> &schools, vector<Game> &games) {
                     break;
             case 3: Schoolrank(schools); break;
             case 4: Sportrank(games); break;
+            case 5: Menrank(schools); break;
+            case 6: Womenrank(schools); break;
             case 0: m = -1;
                     break;
             default:;
@@ -211,6 +217,28 @@ void Sportrank(vector<Game> &games) {
     cout << "witch one ?" << endl;
     cin >> i;
     games[i-1].printrank();
+    cout << endl << endl;
+}
+void Menrank(vector<School> &schools) {
+    vector<School> s;
+    s.assign(schools.begin(), schools.end());
+    stable_sort(s.begin(), s.end(),
+                [] (const School &a, const School &b)
+                    {return a.getmscore() > b.getmscore();});
+    cout << "*******MEN RANK*******" << endl;
+    for (const auto o : s)
+        o.print();
+    cout << endl << endl;
+}
+void Womenrank(vector<School> &schools) {
+    vector<School> s;
+    s.assign(schools.begin(), schools.end());
+    stable_sort(s.begin(), s.end(),
+                [] (const School &a, const School &b)
+                    {return a.getwscore() > b.getwscore();});
+    cout << "*******WOMEN RANK*******" << endl;
+    for (const auto o : s)
+        o.print();
     cout << endl << endl;
 }
 
