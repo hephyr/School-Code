@@ -144,6 +144,7 @@ void Interface_md(vector<School> &schools, vector<Game> &games){
     int m = 0;
     int choose;
     int add;
+    int flag = 0;
    while (1) {  
     cout << "*********************" << endl;
     cout << "\t1.Insert School" << endl;
@@ -167,6 +168,15 @@ void Interface_md(vector<School> &schools, vector<Game> &games){
                 break;
             case 3:cout << "Which one school do you want to delete?" << endl;
                 cin >> add;
+                for (auto s_it = schools.begin(); s_it != schools.end(); ++s_it) {
+                    if (s_it->getID() == add)
+                        flag = 1;
+                }
+                if (flag == 0) {
+                    cout << "Wrong ID" << endl;
+                    break;
+                }
+                flag = 0;
                 --School::no;
                 schools.erase(schools.begin() + add - 1);
                 ResetID(schools);
@@ -174,6 +184,15 @@ void Interface_md(vector<School> &schools, vector<Game> &games){
                 break;
             case 4:cout << "Which one game do you want to delete?" << endl;
                 cin >> add;
+                for (auto g_it = games.begin(); g_it != games.end(); ++g_it) {
+                    if (g_it->getID() == add)
+                        flag = 1;
+                }
+                if (flag == 0) {
+                    cout << "Wrong ID" << endl;
+                    break;
+                }
+                flag = 0;
                 --Game::no;
                 games.erase(games.begin() + add - 1);
                 ResetID(games);
