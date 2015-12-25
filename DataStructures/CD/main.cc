@@ -15,7 +15,6 @@ using std::stoi;
 
 int Game::no = 1;
 int School::no = 1;
-int num_sch, num_sport;
 void Interface();
 void Schoolrank(vector<School> &schools);
 void Sportrank(vector<Game> &games);
@@ -25,10 +24,11 @@ void Interface_out(vector<School> &schools, vector<Game> &games);
 void Interface_md(vector<School> &schools, vector<Game> &games);
 void ReadGameData(ifstream &infile, vector<Game> &games);
 void ReadSchoolData(ifstream &infile, vector<School> &schools);
-
+void ResetID(vector<School> &schools);
+void ResetID(vector<Game> &games);
 
 int main(int argc, char *argv[]) {
-
+    int num_sch, num_sport;
     int choose;
     vector<School> schools;
     vector<Game> games;
@@ -151,26 +151,26 @@ void Interface_md(vector<School> &schools, vector<Game> &games){
         switch (choose) {
             case 1:cout << "How many schools do you want to insert?" << endl;
                 cin >> add;
-                num_sch += add;
-                schools.resize(num_sch + add);
+                schools.resize(School::no + add - 1);
                 WriteData(games, schools);
                 break;
             case 2:cout << "How many games do you want to insert?" << endl;
                 cin >> add;
-                num_sport += add;
-                games.resize(num_sport + add);
+                games.resize(Game::no + add - 1);
                 WriteData(games, schools);
                 break;
             case 3:cout << "Which one school do you want to delete?" << endl;
                 cin >> add;
-                num_sch -= add;
+                --School::no;
                 schools.erase(schools.begin() + add - 1);
+                ResetID(schools);
                 WriteData(games, schools);
                 break;
             case 4:cout << "Which one game do you want to delete?" << endl;
                 cin >> add;
-                num_sport -= add;
+                --Game::no;
                 games.erase(games.begin() + add - 1);
+                ResetID(games);
                 WriteData(games, schools);
                 break;
             case 5:for (const auto &sport : games) {
@@ -302,5 +302,19 @@ void ReadSchoolData(ifstream &infile, vector<School> &schools) {
             flag = 1;
             schools.push_back(temp);
         }
+    }
+}
+void ResetID(vector<School> &schools) {
+    int i = 1;
+    for (auto &sch : schools) {
+        sch.setID(i);
+        ++i;
+    }
+}
+void ResetID(vector<Game> &games) {
+    int i = 1;
+    for (auto &g : games) {
+        g.setID(i);
+        ++i;
     }
 }
