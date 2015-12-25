@@ -144,8 +144,10 @@ void ReadGameData(ifstream &infile, vector<Game> &games) {
     int flag = 1;
     while (getline(infile, s)) {
         auto pos = s.find(":") + 1;
-        if (pos == s.size())
+        if (pos == s.size()) {
+            flag != 2 ? ++flag : flag = 1;
             continue;
+        }
         if (s.find("ID") != string::npos) {
             temp.setID(stoi(s.substr(pos)));
         } else if (s.find("Name") != string::npos) {
@@ -153,7 +155,7 @@ void ReadGameData(ifstream &infile, vector<Game> &games) {
         } else if (s.find("Winners") != string::npos) {
             temp.setwinners(stoi(s.substr(pos)));
         }
-        if (flag != 3)
+        if (flag != 2)
             ++flag;
         else {
             flag = 1;
@@ -172,8 +174,10 @@ void ReadSchoolData(ifstream &infile, vector<School> &schools) {
     int flag = 1;
     while (getline(infile, s)) {
         auto pos = s.find(":") + 1;
-        if (pos == s.size())
+        if (pos == s.size()) {
+            flag != 2 ? ++flag : flag = 1;
             continue;
+        }
         if (s.find("ID") != string::npos) {
             temp.setID(stoi(s.substr(pos)));
         } else if (s.find("Score") != string::npos) {

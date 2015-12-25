@@ -8,10 +8,17 @@ using std::cout; using std::endl;
 using std::vector; using std::string;
 using std::regex;
 int main() {
+	string s;
+	std::ifstream infile("schools.txt");
 	int i = 1;
-	vector<int> v;
-	v.push_back(i);
-	i = 2;
-	cout << v[0] << endl;
+	while (getline(infile, s)) {
+		cout << i++;
+		auto pos = s.find(":") + 1;
+        if (pos == s.size()) {
+        	cout << "None" << endl;
+            continue;
+        }
+        cout << endl;
+	}
     return 0;
 }
