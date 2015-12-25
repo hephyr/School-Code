@@ -42,10 +42,10 @@ public:
     void setwscore(int s) {
         wscore = s;
     }
-    int getmscore() const {
+    int getmscore() const{
         return mscore;
     }
-    int getwscore() const {
+    int getwscore() const{
         return wscore;
     }
     void writefile(std::ofstream &outfile) const {

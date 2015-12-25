@@ -28,6 +28,12 @@ public:
     void setName(std::string n) {
         name = n;
     }
+    void setcompete(int c) {
+        compete = c;
+    }
+    int getcompete() {
+        return compete ;
+    }
     void setscore(std::vector<School> &S);
     void printrank();
     void writefile(std::ofstream &outfile) const;
@@ -37,6 +43,7 @@ private:
     int id;
     int sex;//1£ºmale 2:female;
     int winners;
+    int compete=0;//0£»1£»
     int score5[5] = {7, 5, 3, 2, 1};
     int score3[3] = {5, 3, 2};
     std::vector<School> rank;

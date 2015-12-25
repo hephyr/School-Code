@@ -31,38 +31,50 @@ Game::Game(int i) {
 void Game::print() const {
     std::cout << "ID." << id << " " << name;
         if (sex == 1)
-            std::cout << "Sex:male" << std::endl;
+            std::cout << "Sex:Female" << std::endl;
         else
-            std::cout << "Sex:female" << std::endl;
+            std::cout << "Sex:Male" << std::endl;
 }
 void Game::setscore(std::vector<School> &S) {
     size_t s;
     size_t j;
+
     for (int i = 0; i != winners; ++i) {
 
         std::cout << "Schools:" << std::endl;
         for (const auto &school : S) {
             std::cout << "ID." << school.getID() << std::endl;
         }
-        std::cout << "Input the No." << i + 1 << " school id." << std::endl;
-        std::cin >> s;
-        if (sex == 1) {
-            if (winners == 3) {
-                S[s - 1].addmscore(score3[i]);
-            } else {
-                S[s - 1].addmscore(score5[i]);
+        while (1) {
+            int m = 0;
+            std::cout << "Input the No." << i + 1 << " school id." << std::endl;
+            std::cin >> s;
+            for (const auto school : S) {
+                if (s == school.getID()) {
+                    if (sex == 1) {
+                        if (winners == 3) {
+                            S[s - 1].addmscore(score3[i]);
+                        } else {
+                            S[s - 1].addmscore(score5[i]);
+                        }
+                        rank.push_back(S[s - 1]);
+                    } else {
+                        if (winners == 3) {
+                            S[s - 1].addwscore(score3[i]);
+                        } else {
+                            S[s - 1].addwscore(score5[i]);
+                        }
+                        rank.push_back(S[s - 1]);
+                    }
+                    m = -1;
+                } 
             }
-            rank.push_back(S[s - 1]);
+            if (m == -1)
+               break;
+            else
+               std::cout << "Error Number!Input Again!" << std::endl;
+           
         }
-        else {
-            if (winners == 3) {
-                S[s - 1].addwscore(score3[i]);
-            } else {
-                S[s - 1].addwscore(score5[i]);
-            }
-            rank.push_back(S[s - 1]);
-        }
-
     }
 }
 void Game::printrank() {
@@ -81,6 +93,7 @@ void Game::printrank() {
 void Game::writefile(std::ofstream &outfile) const {
     outfile << "ID:" << id << std::endl;
     outfile << "Sex:" << sex << std::endl;
+    outfile << "Compete:" << compete << std::endl;
     outfile << "Winners:" << winners << std::endl;
     std::vector<School> rank;
     for (const auto &sch : rank)
