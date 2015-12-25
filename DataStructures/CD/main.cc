@@ -241,7 +241,7 @@ void ReadGameData(ifstream &infile, vector<Game> &games) {
     while (getline(infile, s)) {
         auto pos = s.find(":") + 1;
         if (pos == s.size()){
-            if (flag < 4) {
+            if (flag < 3) {
                 ++flag;
             } else {
                 games.push_back(temp);
