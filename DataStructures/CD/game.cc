@@ -31,9 +31,9 @@ Game::Game(int i) {
 void Game::print() const {
     std::cout << "ID." << id << " " << name;
         if (sex == 1)
-            std::cout << "Sex:Å®" << std::endl;
+            std::cout << "Sex:male" << std::endl;
         else
-            std::cout << "Sex:ÄÐ" << std::endl;
+            std::cout << "Sex:female" << std::endl;
 }
 void Game::setscore(std::vector<School> &S) {
     size_t s;

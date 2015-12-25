@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
         games.resize(num_sport);
     }
     WriteData(games, schools);
-   while (1) {
+    while (1) {
         Interface();
         cin >> choose;
         switch (choose) {
@@ -241,7 +241,12 @@ void ReadGameData(ifstream &infile, vector<Game> &games) {
     while (getline(infile, s)) {
         auto pos = s.find(":") + 1;
         if (pos == s.size()){
-            flag != 3 ? ++flag : flag = 1;
+            if (flag < 4) {
+                ++flag;
+            } else {
+                games.push_back(temp);
+                flag = 1;
+            }
             continue;
         }
         if (s.find("ID") != string::npos) {
@@ -273,7 +278,12 @@ void ReadSchoolData(ifstream &infile, vector<School> &schools) {
     while (getline(infile, s)) {
         auto pos = s.find(":") + 1;
         if (pos == s.size()) {
-            flag != 4 ? ++flag : flag = 1;
+            if (flag < 4) {
+                ++flag;
+            } else {
+                schools.push_back(temp);
+                flag = 1;
+            }
             continue;
         }
         if (s.find("ID") != string::npos) {
