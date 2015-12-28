@@ -288,8 +288,6 @@ void ReadGameData(ifstream &infile, vector<Game> &games) {
                 ++flag;
             } else {
                 games.push_back(temp);
-                cout << "push_back:";
-                temp.printrank();
                 temp.clean_rank();
                 flag = 1;
             }
@@ -323,8 +321,6 @@ void ReadGameData(ifstream &infile, vector<Game> &games) {
         else {
             flag = 1;
             games.push_back(temp);
-            cout << "push_back:";
-            temp.printrank();
             temp.clean_rank();
         }
     }
