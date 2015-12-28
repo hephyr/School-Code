@@ -57,14 +57,14 @@ void Game::setscore(std::vector<School> &S) {
                         } else {
                             S[s - 1].addmscore(score5[i]);
                         }
-                        rank.push_back(S[s - 1]);
+                        rank_id.push_back(S[s - 1].getID());
                     } else {
                         if (winners == 3) {
                             S[s - 1].addwscore(score3[i]);
                         } else {
                             S[s - 1].addwscore(score5[i]);
                         }
-                        rank.push_back(S[s - 1]);
+                        rank_id.push_back(S[s - 1].getID());
                     }
                     m = -1;
                 } 
@@ -79,8 +79,8 @@ void Game::setscore(std::vector<School> &S) {
 }
 void Game::printrank() {
     size_t i = 0;
-    for (const auto &sch : rank) {
-        std::cout << "ID." << sch.getID();
+    for (const auto &sch : rank_id) {
+        std::cout << "ID." << sch;
         if (winners == 3) {
             std::cout << " Score: " << score3[i] << std::endl;
             ++i;
@@ -95,7 +95,9 @@ void Game::writefile(std::ofstream &outfile) const {
     outfile << "Sex:" << sex << std::endl;
     outfile << "Compete:" << compete << std::endl;
     outfile << "Winners:" << winners << std::endl;
-    std::vector<School> rank;
-    for (const auto &sch : rank)
-        sch.writefile(outfile);
+    outfile << "Rank:";
+    for (const auto &i : rank_id) {
+        outfile << i << " ";
+    }
+    outfile << std::endl;
 }

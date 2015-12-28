@@ -101,7 +101,7 @@ void Interface_in(vector<School> &schools, vector<Game> &games) {
                          WriteData(games, schools);
                      }
                      else {
-                         cout << "This game infomation has existed£¡" << endl;
+                         cout << "This game infomation has existed" << endl;
                      }
                      break;
             case 0: m = -1;
@@ -236,19 +236,25 @@ void Schoolrank(vector<School> &schools) {
 
 void Sportrank(vector<Game> &games) {
     size_t i;
+    int flag = 0;
     cout << "*******RANK*******" << endl;
     for (const auto &s : games) {
         s.print();
     }
     cout << "witch one ?" << endl;
     cin >> i;
- 
-    if (games[i - 1].getcompete() == 1) {
+    for (auto g_it = games.begin(); g_it != games.end(); ++g_it) {
+        if (g_it->getID() == i)
+            flag = 1;
+    }
+    if (flag == 0) {
+        cout << "Wrong ID" << endl;
+    } else if (games[i - 1].getcompete() == 1) {
         games[i - 1].printrank();
         cout << endl << endl;
-    } else
+    } else {
         cout << "This game hasn't competed!" << endl;
-
+    }
 }
 
 bool WriteData(vector<Game> &game, vector<School> &schools) {
@@ -278,10 +284,13 @@ void ReadGameData(ifstream &infile, vector<Game> &games) {
     while (getline(infile, s)) {
         auto pos = s.find(":") + 1;
         if (pos == s.size()) {
-            if (flag < 4) {
+            if (flag < 5) {
                 ++flag;
             } else {
                 games.push_back(temp);
+                cout << "push_back:";
+                temp.printrank();
+                temp.clean_rank();
                 flag = 1;
             }
             continue;
@@ -293,16 +302,30 @@ void ReadGameData(ifstream &infile, vector<Game> &games) {
         } else if (s.find("Sex") != string::npos) {
             temp.setsex(stoi(s.substr(pos)));
         } else  if (s.find("Compete") != string::npos) {
-                temp.setcompete(stoi(s.substr(pos)));
-            } 
-        else if (s.find("Winners") != string::npos) {
+            temp.setcompete(stoi(s.substr(pos)));
+        } else if (s.find("Winners") != string::npos) {
             temp.setwinners(stoi(s.substr(pos)));
+        } else if (s.find("Rank") != string::npos) {
+            auto pos = s.find(":") + 1;
+            auto space_next = s.find(" ") + 1;
+            while (1) {
+                temp.rankpushback(stoi(s.substr(pos, space_next - pos)));
+                s = s.substr(space_next);
+                pos = 0;
+                if (s.find(" ") == string::npos)
+                    break;
+                else
+                    space_next = s.find(" ") + 1;
+            }
         }
-        if (flag != 4)
+        if (flag != 5)
             ++flag;
         else {
             flag = 1;
             games.push_back(temp);
+            cout << "push_back:";
+            temp.printrank();
+            temp.clean_rank();
         }
     }
 }
@@ -364,7 +387,7 @@ void Menrank(vector<School> &schools) {
                 [](const School &a, const School &b)
     {return a.getmscore() > b.getmscore(); });
     cout << "*******MEN RANK*******" << endl;
-    for (const auto o : s)
+    for (const auto &o : s)
         o.print();
     cout << endl << endl;
 }
@@ -375,7 +398,7 @@ void Womenrank(vector<School> &schools) {
                 [](const School &a, const School &b)
     {return a.getwscore() > b.getwscore(); });
     cout << "*******WOMEN RANK*******" << endl;
-    for (const auto o : s)
+    for (const auto &o : s)
         o.print();
     cout << endl << endl;
 }

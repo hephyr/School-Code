@@ -34,6 +34,12 @@ public:
     int getcompete() {
         return compete ;
     }
+    void rankpushback(int i) {
+        rank_id.push_back(i);
+    }
+    void clean_rank() {
+        rank_id.clear();
+    }
     void setscore(std::vector<School> &S);
     void printrank();
     void writefile(std::ofstream &outfile) const;
@@ -41,11 +47,11 @@ public:
 private:
     std::string name;
     int id;
-    int sex;//1£ºmale 2:female;
+    int sex;
     int winners;
-    int compete=0;//0£»1£»
+    int compete=0;
     int score5[5] = {7, 5, 3, 2, 1};
     int score3[3] = {5, 3, 2};
-    std::vector<School> rank;
+    std::vector<int> rank_id;
 };
 #endif //GAME_H
