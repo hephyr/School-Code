@@ -226,7 +226,7 @@ void Schoolrank(vector<School> &schools) {
     s.assign(schools.begin(), schools.end());
     stable_sort(s.begin(), s.end(),
                 [](const School &a, const School &b)
-    {return a.getscore() > b.getscore(); });                //stable_sort通过lambd函数进行比较
+    {return a.getscore() > b.getscore(); });                //stable_sort通过lambda函数进行比较
     cout << "*******RANK*******" << endl;
     for (const auto o : s)
         o.print();
