@@ -15,19 +15,19 @@ using std::stoi;
 
 int Game::no = 1;
 int School::no = 1;
-void Interface();
-void Schoolrank(vector<School> &schools);
-void Sportrank(vector<Game> &games);
-bool WriteData(vector<Game> &game, vector<School> &schools);
-void Interface_in(vector<School> &schools, vector<Game> &games);
-void Interface_out(vector<School> &schools, vector<Game> &games);
-void Interface_md(vector<School> &schools, vector<Game> &games);
-void Menrank(vector<School> &schools);
-void Womenrank(vector<School> &schools);
-void ReadGameData(ifstream &infile, vector<Game> &games);
-void ReadSchoolData(ifstream &infile, vector<School> &schools);
-void ResetID(vector<School> &schools);
-void ResetID(vector<Game> &games);
+void Interface();                                                       //主界面
+void Schoolrank(vector<School> &schools);                               //学校排名
+void Sportrank(vector<Game> &games);                                    //项目排名
+bool WriteData(vector<Game> &game, vector<School> &schools);            //写入数据
+void Interface_in(vector<School> &schools, vector<Game> &games);        //输入信息
+void Interface_out(vector<School> &schools, vector<Game> &games);       //输出信息
+void Interface_md(vector<School> &schools, vector<Game> &games);        //修改信息
+void Menrank(vector<School> &schools);                                  //男团排名
+void Womenrank(vector<School> &schools);                                //女团排名
+void ReadGameData(ifstream &infile, vector<Game> &games);               //读数据
+void ReadSchoolData(ifstream &infile, vector<School> &schools);         //读数据
+void ResetID(vector<School> &schools);                                  //整理学校编号
+void ResetID(vector<Game> &games);                                      //整理学校编号
 
 int main(int argc, char *argv[]) {
     int num_sch, num_sport;
@@ -139,8 +139,7 @@ void Interface_out(vector<School> &schools, vector<Game> &games) {
             case 4: Menrank(schools); break;
             case 5: Womenrank(schools); break;
             case 6: Sportrank(games); break;
-            case 0: m = -1;
-                break;
+            case 0: m = -1; break;
             default:cout << "Error!Input again!" << endl;;
         }
         if (m == -1)
@@ -227,7 +226,7 @@ void Schoolrank(vector<School> &schools) {
     s.assign(schools.begin(), schools.end());
     stable_sort(s.begin(), s.end(),
                 [](const School &a, const School &b)
-    {return a.getscore() > b.getscore(); });
+    {return a.getscore() > b.getscore(); });                //stable_sort通过lambd函数进行比较
     cout << "*******RANK*******" << endl;
     for (const auto o : s)
         o.print();
@@ -284,7 +283,7 @@ void ReadGameData(ifstream &infile, vector<Game> &games) {
     while (getline(infile, s)) {
         auto pos = s.find(":") + 1;
         if (pos == s.size()) {
-            if (flag < 5) {
+            if (flag < 5) {                 //数据的行数
                 ++flag;
             } else {
                 games.push_back(temp);
@@ -316,7 +315,7 @@ void ReadGameData(ifstream &infile, vector<Game> &games) {
                     space_next = s.find(" ") + 1;
             }
         }
-        if (flag != 5)
+        if (flag != 5)              //行数
             ++flag;
         else {
             flag = 1;

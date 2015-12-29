@@ -15,7 +15,7 @@ public:
     int getID() const {
         return id;
     }
-    void print() const;
+    void print() const;             //输出项目编号，名称，男团，女团
     void setID(int i) {
         id = i;
     }
@@ -40,9 +40,9 @@ public:
     void clean_rank() {
         rank_id.clear();
     }
-    void setscore(std::vector<School> &S);
-    void printrank();
-    void writefile(std::ofstream &outfile) const;
+    void setscore(std::vector<School> &S);          //对成绩赋值
+    void printrank();                               //输出项目排名
+    void writefile(std::ofstream &outfile) const;   //写入文件
     static int no;
 private:
     std::string name;
@@ -52,6 +52,6 @@ private:
     int compete=0;
     int score5[5] = {7, 5, 3, 2, 1};
     int score3[3] = {5, 3, 2};
-    std::vector<int> rank_id;
+    std::vector<int> rank_id;                       //存储成绩排名
 };
 #endif //GAME_H

@@ -1,5 +1,4 @@
 #include "game.h"
-
 Game::Game() {
     id = no++;
     // std::cout << "Please input the game name :";

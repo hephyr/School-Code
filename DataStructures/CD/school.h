@@ -30,7 +30,7 @@ public:
         return wscore+mscore;
         
     }
-    void addmscore(int s) {
+    void addmscore(int s) {     //对男团成绩总和
         mscore += s;
     }
     void addwscore(int s) {
@@ -48,7 +48,7 @@ public:
     int getwscore() const{
         return wscore;
     }
-    void writefile(std::ofstream &outfile) const {
+    void writefile(std::ofstream &outfile) const {      //写入文件
         outfile << "ID:" << id << std::endl;
         outfile << "Mscore:" << mscore << std::endl;
         outfile << "Wscore:" << wscore << std::endl;
@@ -59,7 +59,7 @@ public:
     }
     
 
-    static int no;
+    static int no;      //全局静态变量   用来对ID进行赋值
 private:
     int id;
     int mscore;
