@@ -20,16 +20,26 @@ int main(int argc, char *argv[]) {
 
 template <typename T>
 void exchange(T a[], int left, int right, int k) {
-    int middle = (left + right) / 2;
-    if (k > middle) {
-        sp(a, left, k, right - k);
-        exchange(a, left + right - k, right, k);
-    } else if (k < middle) {
-        sp(a, left, left + right -k, k - left);
-        exchange(a, k, right, right - k);
+    if (left >= right)
+        return;
+    if (k - left < right - k + 1) {
+        sp(a, left, right - k + 1, k - left);
+        exchange(a, left, right - k, right - k);
+    } else if (k - left > right - k + 1) {
+        sp(a, left, right - k + 1, right - k + 1);
+        exchange(a, left + right - k + 1, right, k);
     } else {
-        sp(a, left, k, (right - left) / 2);
+        sp(a, left, k, right - k + 1);
     }
+    // if (k > middle) {
+    //     sp(a, left, k, right - k);
+    //     exchange(a, left + right - k, right, k);
+    // } else if (k < middle) {
+    //     sp(a, left, left + right -k, k - left);
+    //     exchange(a, k, right, right - k);
+    // } else {
+    //     sp(a, left, k, (right - left) / 2);
+    // }
 }
 
 template <typename T>
