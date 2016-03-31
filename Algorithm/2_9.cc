@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 using std::endl; using std::cout;
 using std::cin;
 
