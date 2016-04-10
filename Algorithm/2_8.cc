@@ -1,26 +1,36 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
+
 using std::endl; using std::cout;
-using std::cin;
+using std::cin; using std::ifstream;
+using std::vector;
+
 
 template <typename T>
-void exchange(T a[], int left, int right, int k);
+void exchange(vector<T> &v, int left, int right, int k);
 
 template <typename T>
-void sp(T a[], int left, int right, int amount);
+void sp(vector<T> &v, int left, int right, int amount);
 
 
 int main(int argc, char *argv[]) {
-    int a[5] = {1, 2, 3, 4, 5};
-    exchange(a, 0, 4, 5);
-    for (int i = 0; i < 5; ++i) {
+    ifstream file;
+    file.open("array.txt");
+    vector<int> a;
+    int value;
+    while (file >> value) {
+        a.push_back(value);
+    }
+    exchange(a, 0, a.size() - 1, 2);
+    for (int i = 0; i < a.size(); ++i) {
         cout << a[i] << endl;
     }
-    system("pause");
     return 0;
 }
 
 template <typename T>
-void exchange(T a[], int left, int right, int k) {
+void exchange(vector<T> &a, int left, int right, int k) {
     if (left >= right || k > right)
         return;
     if (k - left < right - k + 1) {
@@ -35,7 +45,7 @@ void exchange(T a[], int left, int right, int k) {
 }
 
 template <typename T>
-void sp(T a[], int start_a, int start_b, int amount) {
+void sp(vector<T> &a, int start_a, int start_b, int amount) {
     int temp;
     for (int i = 0; i < amount; ++i) {
         temp = a[start_a + i];
