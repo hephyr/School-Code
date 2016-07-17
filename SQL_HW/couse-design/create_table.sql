@@ -18,7 +18,7 @@ CREATE TABLE Class
 (
     class_id       int unsigned    NOT NULL     AUTO_INCREMENT,
     class_name     char(50)        NOT NULL,
-    PRIMARY KEY (school_id)
+    PRIMARY KEY (class_id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Sports
