@@ -14,43 +14,43 @@
 
 -- 评定（裁判员编号，项目编号，评定规则，评定人）3NF 
 
-CREAT TABLE Class
+CREATE TABLE Class
 (
     class_id       int unsigned    NOT NULL     AUTO_INCREMENT,
     class_name     char(50)        NOT NULL,
     PRIMARY KEY (school_id)
 ) ENGINE=InnoDB;
 
-CREAT TABLE Sports
+CREATE TABLE Sports
 (
     sports_id       int unsigned    NOT NULL    AUTO_INCREMENT,
     sports_name     char(50)        NOT NULL,
-    sports_score    int unsigned    NOT NULL DEFAULT 2,
     referee_id      int unsigned    NOT NULL,
     num_athletes    tinyint unsigned    NOT NULL,
     PRIMARY KEY (sports_id)
 ) ENGINE=InnoDB;
 
-CREAT TABLE Athletes
+CREATE TABLE Athletes
 (
     athletes_id     int unsigned    NOT NULL    AUTO_INCREMENT,
     athletes_name   char(50)        NOT NULL,
-    athletes_sex    char(5)         NOT NULL,
-    athletes_age    tinyint unsigned    NOT NULL,
+    athletes_sex    char(5),
+    athletes_age    tinyint unsigned,
     class_id        int unsigned    NOT NULL,
     PRIMARY KEY (athletes_id)
 ) ENGINE=InnoDB;
 
-CREAT TABLE Referee
+CREATE TABLE Referee
 (
     referee_id      int unsigned    NOT NULL    AUTO_INCREMENT,
     referee_name    char(50)        NOT NULL,
     PRIMARY KEY (referee_id)
 ) ENGINE=InnoDB;
 
-CREAT TABLE Registration
+CREATE TABLE Score
 (
     sports_id       int unsigned    NOT NULL,
     athletes_id     int unsigned    NOT NULL,
+    score           int unsigned    NULL,
     PRIMARY KEY (sports_id, athletes_id)
 ) ENGINE=InnoDB;
