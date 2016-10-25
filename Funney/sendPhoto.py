@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+import json
 import requests
 import telegram
 from telegram.ext import Updater
@@ -23,22 +25,50 @@ def getUrl(text):
 def echo(bot, update):
     text = update.message.text
     url = getUrl(text)
-    bot.sendChatAction(chat_id=update.message.chat_id,
-                       action=telegram.ChatAction.TYPING)
     if url is False:
+        bot.sendChatAction(chat_id=update.message.chat_id,
+                           action=telegram.ChatAction.TYPING)
         bot.sendMessage(chat_id=update.message.chat_id, text='Error')
     else:
+        bot.sendChatAction(chat_id=update.message.chat_id,
+                           action=telegram.ChatAction.UPLOAD_PHOTO)
         bot.sendPhoto(chat_id=update.message.chat_id, photo=url)
 
 
 def cmdPhoto(bot, update, args):
     url = getUrl(args[0])
-    bot.sendChatAction(chat_id=update.message.chat_id,
-                       action=telegram.ChatAction.TYPING)
     if url is False:
+        bot.sendChatAction(chat_id=update.message.chat_id,
+                           action=telegram.ChatAction.TYPING)
         bot.sendMessage(chat_id=update.message.chat_id, text='Error')
     else:
+        bot.sendChatAction(chat_id=update.message.chat_id,
+                           action=telegram.ChatAction.UPLOAD_PHOTO)
         bot.sendPhoto(chat_id=update.message.chat_id, photo=url)
+
+
+def randomPhoto(bot, update):
+    base_url = 'http://gank.io/api/random/data/福利/1'
+    r = requests.get(base_url)
+    data = json.loads(r.text)
+    img_src = data['results'][0]['url']
+    url = img_src.encode()
+    r = requests.get(url, stream=True)
+    img = r.raw.read()
+    f = open('photo.jpg', 'wb')
+    f.write(img)
+    f.close()
+    try:
+        bot.sendChatAction(chat_id=update.message.chat_id,
+                           action=telegram.ChatAction.UPLOAD_PHOTO)
+        bot.sendPhoto(chat_id=update.message.chat_id,
+                      photo=open('photo.jpg', 'rb'))
+        os.remove('photo.jpg')
+    except BaseException, e:
+        bot.sendChatAction(chat_id=update.message.chat_id,
+                           action=telegram.ChatAction.TYPING)
+        bot.sendMessage(chat_id=update.message.chat_id, text=str(e))
+        bot.sendMessage(chat_id=update.message.chat_id, text=url)
 
 
 echo_handler = MessageHandler([Filters.text,
@@ -46,6 +76,8 @@ echo_handler = MessageHandler([Filters.text,
                                Filters.status_update],
                               echo)
 photo_handler = CommandHandler('num', cmdPhoto,  pass_args=True)
+girl_random_handler = CommandHandler('girl', randomPhoto)
 dispatcher.add_handler(echo_handler)
 dispatcher.add_handler(photo_handler)
+dispatcher.add_handler(girl_random_handler)
 updater.start_polling()
