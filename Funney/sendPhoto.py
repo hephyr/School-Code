@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import json
+import random
 import requests
 import telegram
 from telegram.ext import Updater
@@ -71,13 +72,24 @@ def randomPhoto(bot, update):
         bot.sendMessage(chat_id=update.message.chat_id, text=url)
 
 
+def cmdRed(bot, update):
+    base_url = 'http://7xqh4i.com1.z0.glb.clouddn.com/pic%s.jpg'
+    i = random.randint(0, 330)
+    url = base_url % str(i)
+    bot.sendChatAction(chat_id=update.message.chat_id,
+                       action=telegram.ChatAction.UPLOAD_PHOTO)
+    bot.sendPhoto(chat_id=update.message.chat_id, photo=url)
+
+
 echo_handler = MessageHandler([Filters.text,
                                Filters.photo,
                                Filters.status_update],
                               echo)
 photo_handler = CommandHandler('num', cmdPhoto,  pass_args=True)
 girl_random_handler = CommandHandler('girl', randomPhoto)
+red_handler = CommandHandler('red', cmdRed)
 dispatcher.add_handler(echo_handler)
 dispatcher.add_handler(photo_handler)
 dispatcher.add_handler(girl_random_handler)
+dispatcher.add_handler(red_handler)
 updater.start_polling()
