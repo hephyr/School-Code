@@ -1,0 +1,40 @@
+
+body {
+  font: 20px Montserrat, sans-serif;
+  line-height: 1.8;
+  color: #f5f6f7;
+  background-color: #474e5d;
+}
+p {font-size: 16px;}
+.margin {margin-bottom: 45px;}
+.bg-2 {
+  padding-top: 300px;
+  padding-bottom: 400px;
+  color: #ffffff;
+}
+.bg-4 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #2f2f2f; /* Black Gray */
+  color: #fff;
+}
+.container-fluid {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 5px;
+}
+.navbar-nav  li a:hover {
+    color: #1abc9c !important;
+}
+
+#example {
+
+}
