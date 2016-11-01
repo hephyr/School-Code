@@ -4,6 +4,7 @@ var Animal = {
     animal.n = '';
     animal.c = '';
     animal.character = [];
+    //检测输入的属性数组是否在当前动物中
     animal.hasCharacter = function(chars) {
       for (var i = 0; i < chars.length; ++i) {
         cha = chars[i];
@@ -53,7 +54,7 @@ var Bird = {
     return bird;
   }
 };
-
+//创建实例
 var animals = [];
 var cat = Mammal.createNew("猫", "有毛", "爱吃鱼");
 var dog = Mammal.createNew("狗", "有毛", "爱吃肉");
@@ -63,18 +64,23 @@ animals.push(cat);
 animals.push(dog);
 animals.push(bird);
 
-
+//获取输入数据
 function submitForm() {
   var cha = document.getElementById("example").value;
   var arr_cha = cha.split(" ");
   if (cha.length === 0) {
+    if (document.getElementById('ch')) {
+      var term = document.getElementById('ch');
+      pic.removeChild(term);
+    }
     alert("请输入");
   } else {
     var results = coreFun(arr_cha);
     showResutlt("pic", results);
   }
+  return false;
 }
-
+//处理数据
 function coreFun(chars) {
   var results = [];
   for (var i = 0; i < animals.length; ++i) {
@@ -85,8 +91,9 @@ function coreFun(chars) {
   }
   return results;
 }
-
+//操纵DOM显示结果
 function showResutlt(pic_id, results) {
+  if (!document.getElementById) return false;
   var pic = document.getElementById(pic_id);
   var p = document.createElement("h3");
   p.id = 'ch';
