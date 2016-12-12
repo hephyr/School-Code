@@ -35,7 +35,7 @@ class Bar(object):
 
 
 def init(w1, w2):
-    with open('test2.json', 'r') as f:
+    with open('pr2.json', 'r') as f:
         data = loads(f.read())
     for x in data['w1']:
         w1.append(Bar(x['x'], x['y'], 1))
