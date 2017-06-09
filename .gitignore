@@ -31,4 +31,6 @@
 *.zip
 *.pyc
 *.jpg
+*.png
+*.jpeg
 *.txt
